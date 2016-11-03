@@ -1,0 +1,41 @@
+{
+  "name": "react-jiugongge",
+  "version": "0.0.1",
+  "description": "九宫格布局",
+  "keywords": [
+    "react-jiugongge",
+    "jiugongge",
+    "react"
+  ],
+  "homepage": "https://github.com/dxcweb/react-jiugongge",
+  "maitainers": [
+    "605863278@qq.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dxcweb/react-jiugongge.git"
+  },
+  "licenses": "MIT",
+  "config": {
+    "port": 8201
+  },
+  "scripts": {
+    "build": "rc-tools run build",
+    "start": "rc-tools run server",
+    "pub": "rc-tools run pub"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "rc-tools": "5.x",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  },
+  "dependencies": {
+    "react-speed": "^0.0.8"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "main": "./lib"
+}
