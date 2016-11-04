@@ -24,20 +24,37 @@ export default class Jiugongge extends Component {
     }
 
     initWidth() {
-        const {column, border}=this.props;
+        const {column, border, horizontalSpacing}=this.props;
         const dom = document.getElementById(this.id);
-        const width = dom.clientWidth;
-        let borderWidth = 0;
-        if (border != null) {
-            borderWidth = parseInt(border.split(" ")[0]) * (column - 1)
+        let width = dom.clientWidth;
+        if (dom.style.paddingLeft != null && dom.style.paddingLeft != '') {
+            width -= parseInt(dom.style.paddingLeft);
+            if (border != null) {
+                width -= parseInt(border.split(" ")[0]);//在减去左边框
+            }
         }
-        let itemWidth = (width - borderWidth) / column;
+        if (dom.style.paddingRight != null && dom.style.paddingRight != '') {
+            width -= parseInt(dom.style.paddingRight);
+            if (border != null) {
+                width -= parseInt(border.split(" ")[0]);//在减去左边框
+            }
+        }
+        if (border != null) {
+            width -= parseInt(border.split(" ")[0]) * (column - 1);
+        }
+        if (horizontalSpacing != null) {
+            width -= parseInt(horizontalSpacing) * (column - 1);
+            if (border != null) {
+                width -= parseInt(border.split(" ")[0]) * (column - 1);//在减去左边框
+            }
+        }
+        let itemWidth = width / column;
         this.setState({itemWidth, init: true});
     }
 
     //组件移除前调用。
     componentWillUnmount() {
-        window.removeEventListener("resize",  window[this.id]);
+        window.removeEventListener("resize", window[this.id]);
         delete  window[this.id];
     }
 
@@ -46,7 +63,7 @@ export default class Jiugongge extends Component {
         if (!init) {
             return null;
         }
-        const {children, column, border, height}=this.props;
+        const {children, column, border, height, horizontalSpacing, verticalSpacing}=this.props;
         if (children == null) {
             return null;
         }
@@ -56,14 +73,55 @@ export default class Jiugongge extends Component {
             if (lastLine == 0) {
                 lastLine = column;
             }
+            const dom = document.getElementById(this.id);
             return children.map((o, i)=> {
                 let style = {...o.props.style, width: itemWidth};
+                if (horizontalSpacing != null) {
+                    if ((i + 1) % column != 0) {
+                        style = {...style, marginRight: horizontalSpacing};
+                    }
+                }
+                if (verticalSpacing != null) {
+                    if (len - i > lastLine) {
+                        style = {...style, marginBottom: verticalSpacing};
+                    }
+                }
                 if (border != null) {
                     if (len - i > lastLine) {
                         style = {...style, borderBottom: border};
                     }
                     if ((i + 1) % column != 0) {
                         style = {...style, borderRight: border};
+                    }
+                    if (horizontalSpacing != null) {
+                        if ((i) % column != 0) {
+                            style = {...style, borderLeft: border};
+                        }
+                    }
+                    if (verticalSpacing != null) {
+                        if (i >= column) {
+                            style = {...style, borderTop: border};
+                        }
+                    }
+                    if (dom.style.paddingLeft != null && dom.style.paddingLeft != '') {
+                        if ((i) % column == 0) {
+                            style = {...style, borderLeft: border};
+                        }
+                    }
+                    if (dom.style.paddingRight != null && dom.style.paddingRight != '') {
+                        if ((i + 1) % column == 0) {
+                            style = {...style, borderRight: border};
+                        }
+                    }
+                    if (dom.style.paddingTop != null && dom.style.paddingTop != '') {
+                        if (i < column) {
+                            style = {...style, borderTop: border};
+                        }
+                    }
+                    if (dom.style.paddingBottom != null && dom.style.paddingBottom != '') {
+                        if (len - i <= lastLine) {
+                            style = {...style, borderBottom: border};
+                        }
                     }
                 }
                 if (height != null) {
@@ -73,6 +131,7 @@ export default class Jiugongge extends Component {
                         style = {...style, height};
                     }
                 }
+
                 return React.cloneElement(o, {style, key: i})
             });
         } else {
@@ -83,7 +142,7 @@ export default class Jiugongge extends Component {
     }
 
     render() {
-        const {border, column, style, children, ...other}=this.props;
+        const {column, horizontalSpacing, verticalSpacing, children, style, border, ...other}=this.props;
         const newStyle = {...style, border};
         return (
             <Block {...other} style={newStyle} id={this.id} wf>

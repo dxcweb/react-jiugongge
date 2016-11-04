@@ -56,5 +56,17 @@ npm start
       <td>null</td>
       <td>height='100px' 或者 height='width' 高等于宽</td>
     </tr>
+	<tr>
+      <td>horizontalSpacing</td>
+      <td>String</td>
+      <td>null</td>
+      <td>水平间隔</td>
+    </tr>
+	<tr>
+      <td>verticalSpacing</td>
+      <td>String</td>
+      <td>null</td>
+      <td>垂直间隔</td>
+    </tr>
 </tbody>
 </table>
