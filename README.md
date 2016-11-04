@@ -60,13 +60,13 @@ npm start
       <td>horizontalSpacing</td>
       <td>String</td>
       <td>null</td>
-      <td>水平间隔</td>
+      <td>水平间距</td>
     </tr>
 	<tr>
       <td>verticalSpacing</td>
       <td>String</td>
       <td>null</td>
-      <td>垂直间隔</td>
+      <td>垂直间距</td>
     </tr>
 </tbody>
 </table>
