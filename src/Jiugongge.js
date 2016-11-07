@@ -26,7 +26,7 @@ export default class Jiugongge extends Component {
     initWidth() {
         const {column, border, horizontalSpacing}=this.props;
         const dom = document.getElementById(this.id);
-        let width = dom.clientWidth;
+        let width = dom.scrollWidth;
         if (dom.style.paddingLeft != null && dom.style.paddingLeft != '') {
             width -= parseInt(dom.style.paddingLeft);
             if (border != null) {
