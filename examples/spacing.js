@@ -7,7 +7,7 @@ import Jiugongge, {JiugonggeItem} from 'react-jiugongge';
 class Spacing extends Component {
     render() {
         return (
-            <div style={{margin:"0 auto",maxWidth:300}}>
+            <div style={{margin:"0 auto",maxWidth:282.5}}>
                 <Jiugongge border="2px solid red" horizontalSpacing="10px" verticalSpacing="10px" column={3}
                            height='width'
                            style={{padding:10}}

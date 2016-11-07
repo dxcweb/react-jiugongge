@@ -10,7 +10,8 @@ export default class Jiugongge extends Component {
         height: null
     };
     state = {
-        init: false
+        init: false,
+        width: null
     };
     id = 'jiugongge' + Math.floor(Math.random() * 100000);
     //渲染完成后调用一次
@@ -27,14 +28,22 @@ export default class Jiugongge extends Component {
         const {column, border, horizontalSpacing}=this.props;
         const dom = document.getElementById(this.id);
         let width = dom.scrollWidth;
+
         if (dom.style.paddingLeft != null && dom.style.paddingLeft != '') {
             width -= parseInt(dom.style.paddingLeft);
+        }
+        if (dom.style.paddingRight != null && dom.style.paddingRight != '') {
+            width -= parseInt(dom.style.paddingRight);
+        }
+        if (this.state.width != width) {
+            this.setState({width});
+        }
+        if (dom.style.paddingLeft != null && dom.style.paddingLeft != '') {
             if (border != null) {
                 width -= parseInt(border.split(" ")[0]);//在减去左边框
             }
         }
         if (dom.style.paddingRight != null && dom.style.paddingRight != '') {
-            width -= parseInt(dom.style.paddingRight);
             if (border != null) {
                 width -= parseInt(border.split(" ")[0]);//在减去左边框
             }
@@ -145,8 +154,10 @@ export default class Jiugongge extends Component {
         const {column, horizontalSpacing, verticalSpacing, children, style, border, ...other}=this.props;
         const newStyle = {...style, border};
         return (
-            <Block {...other} style={newStyle} id={this.id} wf>
-                {this.children()}
+            <Block {...other} style={newStyle} id={this.id}>
+                <Block style={{width:this.state.width}} wf>
+                    {this.children()}
+                </Block>
             </Block>
         )
     }
