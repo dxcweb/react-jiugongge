@@ -7,7 +7,7 @@ import Jiugongge, {JiugonggeItem} from 'react-jiugongge';
 class Simple extends Component {
     render() {
         return (
-            <div style={{margin:"0 auto",maxWidth:300}}>
+            <div style={{margin:"0 auto"}}>
                 <Jiugongge border="2px solid red"  column={3} height='width'>
                     <JiugonggeItem>
                         <br />

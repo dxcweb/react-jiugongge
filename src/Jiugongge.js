@@ -2,7 +2,7 @@
  * Created by dxc on 2016/11/3.
  */
 import React, {Component, PropTypes} from 'react';
-import {Block} from 'react-speed'
+import Block from 'fs-flex'
 export default class Jiugongge extends Component {
     static defaultProps = {
         column: 5,
@@ -27,8 +27,7 @@ export default class Jiugongge extends Component {
     initWidth() {
         const {column, border, horizontalSpacing}=this.props;
         const dom = document.getElementById(this.id);
-        let width = dom.scrollWidth;
-
+        let width = dom.clientWidth;
         if (dom.style.paddingLeft != null && dom.style.paddingLeft != '') {
             width -= parseInt(dom.style.paddingLeft);
         }

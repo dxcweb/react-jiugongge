@@ -1,6 +1,6 @@
 {
   "name": "react-jiugongge",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "九宫格布局",
   "keywords": [
     "react-jiugongge",
@@ -31,7 +31,7 @@
     "react-dom": "^15.2.1"
   },
   "dependencies": {
-    "react-speed": "^0.0.8"
+    "fs-flex": "0.0.1"
   },
   "files": [
     "lib",
